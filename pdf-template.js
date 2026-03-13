@@ -21,7 +21,7 @@ function renderMoodlePdf(pdfId, title, containerId) {
         class="embed-responsive-item" 
         allowfullscreen=""
         src="https://drive.google.com/file/d/${pdfId}/preview" 
-        // style="width: 100%; height: 600px; border: none;"
+        style="width: 100%; height: 100%; border: none;"
         >
       </iframe>
     </div>
