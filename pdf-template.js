@@ -9,7 +9,9 @@ function renderMoodlePdf(pdfId, title, containerId) {
   const templateHtml = `
     <p></p>
     <h3 style="text-align: center;">
-      <strong>${title}</strong>
+      <a href="https://drive.google.com/file/d/${pdfId}/preview" target="_blank" style="color: #0056b3; text-decoration: none;">
+        <strong>${title}</strong>
+      </a>
     </h3>
     <p style="text-align: center;">
       (Puedes usar el botón en la esquina superior derecha para abrir a tamaño completo y/o descargar el archivo.)
@@ -19,7 +21,8 @@ function renderMoodlePdf(pdfId, title, containerId) {
         class="embed-responsive-item" 
         allowfullscreen=""
         src="https://drive.google.com/file/d/${pdfId}/preview" 
-        style="width: 100%; height: 600px; border: none;">
+        // style="width: 100%; height: 600px; border: none;"
+        >
       </iframe>
     </div>
     <p><br /><br /></p>
