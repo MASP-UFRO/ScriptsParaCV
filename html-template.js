@@ -3,7 +3,7 @@ function renderMoodleDriveHtmlDirect(htmlId, title, containerId) {
   if (!container) return;
 
   // 1. PASTE YOUR APPS SCRIPT TEXT READER URL HERE
-  const textReaderUrl = 'URL_DE_TU_APPS_SCRIPT_AQUI'; 
+  const textReaderUrl = 'https://script.google.com/macros/s/AKfycbxO_3k0Sc6uvuxKBsD-0Bxl1orNDKoxXmrXYo0sdjvgOwhZsuEEsNpjeSb7ZHtdVwwRdw/exec'; 
 
   // 2. Build the layout with an EMPTY iframe (notice the unique ID for the iframe)
   container.innerHTML = `
