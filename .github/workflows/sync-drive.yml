@@ -3,7 +3,7 @@ name: Sync Google Drive HTML
 # Otherwise, the robot will be never executed. 
 on:
   schedule:
-    # This tells the robot to run automatically every 30 minutes
+    # The syntax '*/30 * * * *' tells the robot to run automatically every 30 minutes
     - cron: '*/30 * * * *' 
   workflow_dispatch: 
     # This gives YOU a manual "Sync Now" button in GitHub
