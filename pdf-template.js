@@ -5,7 +5,7 @@ function renderMoodlePdf(pdfId, title, containerId) {
   const templateHtml = `
     <p></p>
     <h3 style="text-align: center;">
-      <a href="https://drive.google.com/file/d/${pdfId}/preview" target="_blank" style="color: inherit; text-decoration: none;">
+      <a href="https://drive.google.com/file/d/${pdfId}/preview" target="_blank" style="color: #0056b3; text-decoration: none;">
         <strong>${title}</strong>
       </a>
     </h3>
