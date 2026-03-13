@@ -12,7 +12,7 @@ function renderMoodlePdf(pdfId, title, containerId) {
       <strong>${title}</strong>
     </h3>
     <p style="text-align: center;">
-      (Puedes usar el botón en la esquina superior derecha para abrir a tamaño completo y/o descargar el archivo. Solo eso. ):
+      (Puedes usar el botón en la esquina superior derecha para abrir a tamaño completo y/o descargar el archivo. Solo eso. Este cambio ya debería estar reflejado)
     </p>
     <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
       <iframe 
