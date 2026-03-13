@@ -14,7 +14,7 @@ function renderMoodlePdf(pdfId, title, containerId) {
       </a>
     </h3>
     <p style="text-align: center;">
-      (Puedes usar el enlace de arriba o botón en la esquina superior derecha del visor para abrir el a tamaño completo y/o descargar el archivo.)
+      (Usa el enlace de arriba o botón en la esquina superior derecha del visor para abrir el archivo a tamaño completo y/o descargarlo.)
     </p>
     <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
       <iframe 
