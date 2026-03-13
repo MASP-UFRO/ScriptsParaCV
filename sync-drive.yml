@@ -22,7 +22,7 @@ jobs:
           mkdir -p drive-html
           
           # Download the data from your Apps Script (PASTE YOUR URL BELOW)
-          curl -s -L "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE" > files.json
+          curl -s -L "https://script.google.com/macros/s/AKfycbw29SVxPK_Nin_cmyZAhloczIHWQ1Myd3nvfm64Jzx_m2uC2OBDO-WYI45A5a1HZmXMdg/exec" > files.json
           
           # Use Python to unpack the data and create the actual .html files
           python3 -c '
