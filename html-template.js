@@ -1,33 +1,19 @@
-function renderMoodleDriveHtmlDirect(htmlId, title, containerId) {
+function renderDriveHtmlSnippet(htmlId, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  // 1. PASTE YOUR APPS SCRIPT TEXT READER URL HERE
+  // 1. PASTE YOUR APPS SCRIPT URL HERE
   const textReaderUrl = 'https://script.google.com/macros/s/AKfycbxO_3k0Sc6uvuxKBsD-0Bxl1orNDKoxXmrXYo0sdjvgOwhZsuEEsNpjeSb7ZHtdVwwRdw/exec'; 
 
-  // 2. Build the layout with an EMPTY iframe (notice the unique ID for the iframe)
-  container.innerHTML = `
-    <p></p>
-    <h3 style="text-align: center;"><strong>${title}</strong></h3>
-    <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
-      <iframe 
-        id="iframe-${htmlId}"
-        class="embed-responsive-item" 
-        style="border: 1px solid #ccc; border-radius: 8px;">
-      </iframe>
-    </div>
-    <p><br /><br /></p>
-  `;
-
-  // 3. Fetch the raw HTML code and inject it as the document source
+  // 2. Fetch the raw HTML code from Drive
   fetch(`${textReaderUrl}?id=${htmlId}`)
     .then(response => response.text())
     .then(rawHtmlCode => {
-      // The magic happens here: srcdoc reads the string and renders a full webpage!
-      document.getElementById(`iframe-${htmlId}`).srcdoc = rawHtmlCode;
+      // 3. Inject the fragment directly into the Moodle page
+      container.innerHTML = rawHtmlCode;
     })
     .catch(err => {
-      console.error(err);
-      container.innerHTML = "Error cargando el contenido HTML.";
+      console.error("Error fetching Drive HTML:", err);
+      container.innerHTML = "<p>Error cargando las instrucciones del proyecto.</p>";
     });
 }
