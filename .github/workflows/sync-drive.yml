@@ -3,7 +3,7 @@ name: Sync Google Drive HTML
 on:
   schedule:
     # This tells the robot to run automatically every night at 3:00 AM
-    - cron: '0 6 * * *' 
+    - cron: '*/30 * * * *' 
   workflow_dispatch: 
     # This gives YOU a manual "Sync Now" button in GitHub
 
@@ -22,7 +22,7 @@ jobs:
           mkdir -p drive-html
           
           # Download the data from your Apps Script (PASTE YOUR URL BELOW)
-          curl -s -L "https://script.google.com/macros/s/AKfycbw29SVxPK_Nin_cmyZAhloczIHWQ1Myd3nvfm64Jzx_m2uC2OBDO-WYI45A5a1HZmXMdg/exec" > files.json
+          curl -s -L "GOOGLE_APP_URL_HERE" > files.json
           
           # Use Python to unpack the data and create the actual .html files
           python3 -c '
