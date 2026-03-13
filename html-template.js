@@ -1,30 +1,33 @@
-function renderMoodleHtml(htmlUrl, title, containerId) {
+function renderMoodleDriveHtmlDirect(htmlId, title, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  const templateHtml = `
+  // 1. PASTE YOUR APPS SCRIPT TEXT READER URL HERE
+  const textReaderUrl = 'URL_DE_TU_APPS_SCRIPT_AQUI'; 
+
+  // 2. Build the layout with an EMPTY iframe (notice the unique ID for the iframe)
+  container.innerHTML = `
     <p></p>
-    <h3 style="text-align: center;">
-      <a href="${htmlUrl}" target="_blank" style="color: inherit; text-decoration: none;">
-        <strong>${title}</strong>
-      </a>
-    </h3>
-    <p style="text-align: center;">
-      (Puedes usar el enlace de arriba para abrir este contenido interactivo en una pestaña completa):
-    </p>
-    
-    <div 
-      class="embed-responsive embed-responsive-16by9" 
-      style="text-align: center;">
+    <h3 style="text-align: center;"><strong>${title}</strong></h3>
+    <div class="embed-responsive embed-responsive-16by9" style="text-align: center;">
       <iframe 
+        id="iframe-${htmlId}"
         class="embed-responsive-item" 
-        allowfullscreen=""
-        src="${htmlUrl}" 
         style="border: 1px solid #ccc; border-radius: 8px;">
       </iframe>
     </div>
     <p><br /><br /></p>
   `;
 
-  container.innerHTML = templateHtml;
+  // 3. Fetch the raw HTML code and inject it as the document source
+  fetch(`${textReaderUrl}?id=${htmlId}`)
+    .then(response => response.text())
+    .then(rawHtmlCode => {
+      // The magic happens here: srcdoc reads the string and renders a full webpage!
+      document.getElementById(`iframe-${htmlId}`).srcdoc = rawHtmlCode;
+    })
+    .catch(err => {
+      console.error(err);
+      container.innerHTML = "Error cargando el contenido HTML.";
+    });
 }
