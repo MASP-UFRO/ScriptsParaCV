@@ -1,4 +1,5 @@
-function renderSimulation(simUrl, containerId) {
+// We added a 3rd parameter with a default value of 1000px
+function renderSimulation(simUrl, containerId, simHeight = '1000px') {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -10,7 +11,7 @@ function renderSimulation(simUrl, containerId) {
     <div style="width: 100%; text-align: center;">
         <iframe 
             src="${simUrl}" 
-            style="width: 100%; max-width: 1000px; height: 1000px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;" 
+            style="width: 100%; max-width: 1000px; height: ${simHeight}; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;" 
             scrolling="no" 
             allowfullscreen="true">
         </iframe>
