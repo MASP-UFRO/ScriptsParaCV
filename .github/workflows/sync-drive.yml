@@ -1,8 +1,9 @@
 name: Sync Google Drive HTML
-
+# For executing this robot: make sure this file is in ScriptsParaCV/.github/workflows 
+# Otherwise, the robot will be never executed. 
 on:
   schedule:
-    # This tells the robot to run automatically every night at 3:00 AM
+    # This tells the robot to run automatically every 30 minutes
     - cron: '*/30 * * * *' 
   workflow_dispatch: 
     # This gives YOU a manual "Sync Now" button in GitHub
