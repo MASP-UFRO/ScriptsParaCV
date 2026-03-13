@@ -1,0 +1,42 @@
+name: Sync Google Drive HTML
+
+on:
+  schedule:
+    # This tells the robot to run automatically every night at 3:00 AM
+    - cron: '0 6 * * *' 
+  workflow_dispatch: 
+    # This gives YOU a manual "Sync Now" button in GitHub
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Fetch from Google Drive and Save Files
+        run: |
+          # Create a folder called drive-html in your repo
+          mkdir -p drive-html
+          
+          # Download the data from your Apps Script (PASTE YOUR URL BELOW)
+          curl -s -L "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE" > files.json
+          
+          # Use Python to unpack the data and create the actual .html files
+          python3 -c '
+          import json, os
+          with open("files.json") as f:
+              data = json.load(f)
+          for file in data:
+              with open(os.path.join("drive-html", file["name"]), "w", encoding="utf-8") as out:
+                  out.write(file["content"])
+          '
+          # Clean up the temporary download
+          rm files.json
+
+      - name: Commit and Push Changes to GitHub
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Auto-sync HTML files from Google Drive"
