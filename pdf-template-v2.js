@@ -14,39 +14,39 @@ const pdfRegistry = {
     	title: 	"Listado 3 - Sistemas de Partículas I"
 	},
 	"ICF177_L04": {
-    	id: 	  "18iYiKdL-1tdobbtnYCEErMWlr06j9gZT", 
+    	id: 	"18iYiKdL-1tdobbtnYCEErMWlr06j9gZT", 
     	title: 	"Listado 4 - Sistemas de Partículas II"
 	},
 	"ICF177_L05": {
-    	id: 	  "1IMG6TmyCHbJwR0-aOgxnUah8IT3ekpn7", 
-    	title: 	"Listado 5 - Centro de Masa y Momento de Inercia de Sól	idos Rígidos"
+    	id: 	"1IMG6TmyCHbJwR0-aOgxnUah8IT3ekpn7", 
+    	title: 	"Listado 5 - Centro de Masa y Momento de Inercia de Sólidos Rígidos"
 	},
 	"ICF177_L06": {
-    	id: 	  "1K4afocs546NPFI7KD0dWhre76Z0b3Pk_", 
-    	title: 	"Listado 6 - Poleas no 	ideales"
+    	id: 	"1K4afocs546NPFI7KD0dWhre76Z0b3Pk_", 
+    	title: 	"Listado 6 - Poleas no ideales"
 	},
 	"ICF177_L07": {
     	id:   	"11h5QYKw6fNQf7E-gygTMkykgsznwBjYA", 
     	title: 	"Listado 7 - Rodadura y Momentum Angular"
 	},
 	"ICF177_L08": {
-    	id: 	  "1qjlI9SzbAemUF0bT9pYEtRFGxX_iXcw9", 
+    	id:		"1qjlI9SzbAemUF0bT9pYEtRFGxX_iXcw9", 
     	title: 	"Listado 8 - Elementos del MAS"
 	},
 	"ICF177_L09": {
-    	id: 	  "1u5bfHD3yxGJgOey3sscRQH2XyB3zbnWO", 
+    	id: 	"1u5bfHD3yxGJgOey3sscRQH2XyB3zbnWO", 
     	title: 	"Listado 9 - Péndulos"
 	},
 	"ICF177_L10": {
-    	id: 	  "1uyTzGHSowHNlc6QvGI9K5-H7x_u9adB5", 
+    	id: 	"1uyTzGHSowHNlc6QvGI9K5-H7x_u9adB5", 
     	title:  "Listado 10 - Oscilaciones Amortiguadas y Forzadas"
 	},
 	"ICF177_L11": {
-    	id: 	  "1X708JCYsLHqnxkBnoiaqsvO-mXXCADYW", 
-    	title: 	"Listado 11 - Mecánica de Flu	idos: Estática"
+    	id: 	"1X708JCYsLHqnxkBnoiaqsvO-mXXCADYW", 
+    	title: 	"Listado 11 - Mecánica de Fluidos: Estática"
 	},
 	"ICF177_L12": {
-    	id: 	  "1wl30HUaNfW64IwudFH-a0NC3D6FTm7tP", 
+    	id: 	"1wl30HUaNfW64IwudFH-a0NC3D6FTm7tP", 
     	title: 	"Listado 12 - Mecánica de Fluidos: Dinamica"
 	}
 };
