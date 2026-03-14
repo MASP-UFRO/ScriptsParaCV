@@ -18,6 +18,11 @@ function renderDriveHtmlSnippet(htmlKey) {
     return;
   }
 
+  // This replaces whatever is in the div immediately
+  container.innerHTML = `<p style="text-align: center; color: #666; font-style: italic;">
+    Cargando contenido desde Drive...
+  </p>`;
+
   // Look up the Google File ID from our Phonebook
   const htmlFileId = htmlRegistry[htmlKey];
 
