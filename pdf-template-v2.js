@@ -64,6 +64,13 @@ function renderMoodlePdf(pdfKey) {
     return;
   }
 
+	// --- NEW: THE GLOBAL LOADING MESSAGE ---
+  container.innerHTML = `
+    <p style="text-align: center; color: #666; font-style: italic;">
+      Preparando visor de PDF...
+    </p>`;
+
+	
   // Look up the ID and Title from the Phonebook
   const pdfData = pdfRegistry[pdfKey];
 
