@@ -17,14 +17,23 @@ function renderDriveHtmlSnippet(htmlKey) {
 		console.error(`Error: Moodle is missing the <div id="${targetId}"></div>`);
 		return;
 	}
+	
+	// Look up the Google File ID from our Phonebook
+	const htmlFileId = htmlRegistry[htmlKey];
+
+
+	// 1. Check if we already have it in THIS session
+	const cachedContent = sessionStorage.getItem(`moodle_html_${htmlFileId}`);
+	if (cachedContent) {
+		container.innerHTML = cachedContent;
+	return;
+	}
+
 
 	// This replaces whatever is in the div immediately
 	container.innerHTML = `<p style="text-align: center; color: #666; font-style: italic;">
 		Cargando contenido desde Drive...
 	</p>`;
-
-	// Look up the Google File ID from our Phonebook
-	const htmlFileId = htmlRegistry[htmlKey];
 
 	if (!htmlFileId) {
 		container.innerHTML = `<p style="color:red;">Error: HTML "${htmlKey}" no registrado.</p>`;
@@ -38,7 +47,7 @@ function renderDriveHtmlSnippet(htmlKey) {
 		.then(response => response.text())
 		.then(rawHtmlCode => {
 			// Save it in the browser for next time
-			sessionStorage.setItem(`moodle_html_${htmlId}`, rawHtmlCode);
+			sessionStorage.setItem(`moodle_html_${htmlFileId}`, rawHtmlCode);
 			// Inject into Moodle
 			container.innerHTML = rawHtmlCode;
 		})
