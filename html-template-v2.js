@@ -33,11 +33,13 @@ function renderDriveHtmlSnippet(htmlKey) {
 
 	const textReaderUrl = 'https://script.google.com/macros/s/AKfycbxO_3k0Sc6uvuxKBsD-0Bxl1orNDKoxXmrXYo0sdjvgOwhZsuEEsNpjeSb7ZHtdVwwRdw/exec'; 
 
-	// Fetch the raw HTML code from Drive
+	// 3. Fetch from Google if not saved locally
 	fetch(`${textReaderUrl}?id=${htmlFileId}`)
 		.then(response => response.text())
 		.then(rawHtmlCode => {
-			// Inject the fragment directly into the Moodle page
+			// Save it in the browser for next time
+			sessionStorage.setItem(`moodle_html_${htmlId}`, rawHtmlCode);
+			// Inject into Moodle
 			container.innerHTML = rawHtmlCode;
 		})
 		.catch(err => {
