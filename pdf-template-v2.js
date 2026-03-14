@@ -2,8 +2,8 @@
 // The Master Database: ids and titles live here now.
 const pdfRegistry = {
 	"ICF177_L01": {
-    	id: 	"124zH8brUgqNcwqioD-Fc-2znttIj2xt-", 
-    	title: 	"Listado 1 - Momentum lineal e impulso (v2)"
+    	id: 	"1f7g5h3oOzOi4be2bhD-1m8M_XkS9_gyq", 
+    	title: 	"Listado 1 - Momentum lineal e impulso"
 	},
 	"ICF177_L02": {
     	id: 	"1gzLPYYiZj4cAhfJ8yGlZG8lcx3fSoaJG", 
@@ -85,7 +85,7 @@ function renderMoodlePdf(pdfKey) {
       </a>
     </h3>
     <p style="text-align: center;">
-      (Usa el enlace de arriba o el botón en la esquina superior derecha del visor para abrir el archivo a tamaño completo y/o descargarlo, ok):
+      (Usa el enlace de arriba o el botón en la esquina superior derecha del visor para abrir el archivo a tamaño completo y/o descargarlo):
     </p>
     <div 
       class="embed-responsive embed-responsive-16by9" 
