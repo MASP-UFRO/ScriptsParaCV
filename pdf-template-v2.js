@@ -31,7 +31,7 @@ const pdfRegistry = {
 	},
 	"ICF177_L08": {
     	id:		"1qjlI9SzbAemUF0bT9pYEtRFGxX_iXcw9", 
-    	title: 	"Listado 8 - Elementos del MAS"
+    	title: 	"Listado 8 - Elementos del Movimiento Armónico Simple (MAS)"
 	},
 	"ICF177_L09": {
     	id: 	"1u5bfHD3yxGJgOey3sscRQH2XyB3zbnWO", 
