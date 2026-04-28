@@ -1,58 +1,58 @@
 // 1. THE HTML PHONEBOOK
+// Each entry is either:
+//   { type: "github", url: "https://username.github.io/repo/path/file.html" }
+//   { type: "drive",  id: "GOOGLE_FILE_ID" }
+
 const htmlRegistry = {
-	"ICF177_Bibliografia": "1JeagyZyXNPWcGoxc6ZN-bQzLwpJ1H87F",
-	"ICF177_Evaluaciones": "1ij9CyX69WSa8Klqk7W3Lqxp5lvITPPiF",
-	"ICF177_Pautas": "19opx_-tC6L4CcLKW4J080601aIF1Bt7F",
-	"ICF177_Proy_Descripcion": "1B8nd-95dKr0RNjG7vEdLL4wJOZSh45dO",
-	"ICF177_Proy_Fechas": "1urY08CsOjSuN7bb07fgAJEH-_Noa7eNi"
+  "ICF177_Bibliografia":    { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/Bibliografia.html" },
+  "ICF177_Evaluaciones":    { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/Detalle_Evaluaciones.html" },
+  "ICF177_Pautas":          { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/Pautas_de_Pruebas.html" },
+  "ICF177_Proy_Descripcion":{ type: "drive",  id: "1B8nd-95dKr0RNjG7vEdLL4wJOZSh45dO" },
+  "ICF177_Proy_Fechas":     { type: "drive",  id: "1urY08CsOjSuN7bb07fgAJEH-_Noa7eNi" },
 };
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxO_3k0Sc6uvuxKBsD-0Bxl1orNDKoxXmrXYo0sdjvgOwhZsuEEsNpjeSb7ZHtdVwwRdw/exec';
 
 // 2. THE RENDER FUNCTION
 function renderDriveHtmlSnippet(htmlKey) {
-	// SAFETY: Auto-generate the target ID based on the phonebook key
-	const targetId = `html-contained-${htmlKey}`;
-	const container = document.getElementById(targetId);
-	
-	if (!container) {
-		console.error(`Error: Moodle is missing the <div id="${targetId}"></div>`);
-		return;
-	}
-	
-	// Look up the Google File ID from our Phonebook
-	const htmlFileId = htmlRegistry[htmlKey];
+  const targetId = `html-contained-${htmlKey}`;
+  const container = document.getElementById(targetId);
 
+  if (!container) {
+    console.error(`Error: Moodle is missing the <div id="${targetId}"></div>`);
+    return;
+  }
 
-	// 1. Check if we already have it in THIS session
-	const cachedContent = sessionStorage.getItem(`moodle_html_${htmlFileId}`);
-	if (cachedContent) {
-		container.innerHTML = cachedContent;
-	return;
-	}
+  const entry = htmlRegistry[htmlKey];
 
+  if (!entry) {
+    container.innerHTML = `<p style="color:red;">Error: HTML "${htmlKey}" no registrado.</p>`;
+    return;
+  }
 
-	// This replaces whatever is in the div immediately
-	container.innerHTML = `<p style="text-align: center; color: #666; font-style: italic;">
-		Cargando contenido desde Drive...
-	</p>`;
+  // Cache key works for both sources
+  const cacheKey = `moodle_html_${htmlKey}`;
+  const cached = sessionStorage.getItem(cacheKey);
+  if (cached) {
+    container.innerHTML = cached;
+    return;
+  }
 
-	if (!htmlFileId) {
-		container.innerHTML = `<p style="color:red;">Error: HTML "${htmlKey}" no registrado.</p>`;
-		return;
-	}
+  container.innerHTML = `<p style="text-align:center;color:#666;font-style:italic;">Cargando contenido...</p>`;
 
-	const textReaderUrl = 'https://script.google.com/macros/s/AKfycbxO_3k0Sc6uvuxKBsD-0Bxl1orNDKoxXmrXYo0sdjvgOwhZsuEEsNpjeSb7ZHtdVwwRdw/exec'; 
+  // Resolve the fetch URL based on source type
+  const fetchUrl = entry.type === "github"
+    ? entry.url
+    : `${APPS_SCRIPT_URL}?id=${entry.id}`;
 
-	// 3. Fetch from Google if not saved locally
-	fetch(`${textReaderUrl}?id=${htmlFileId}`)
-		.then(response => response.text())
-		.then(rawHtmlCode => {
-			// Save it in the browser for next time
-			sessionStorage.setItem(`moodle_html_${htmlFileId}`, rawHtmlCode);
-			// Inject into Moodle
-			container.innerHTML = rawHtmlCode;
-		})
-		.catch(err => {
-			console.error("Error fetching Drive HTML:", err);
-			container.innerHTML = "<p>Error cargando las instrucciones.</p>";
-		});
+  fetch(fetchUrl)
+    .then(r => r.text())
+    .then(html => {
+      sessionStorage.setItem(cacheKey, html);
+      container.innerHTML = html;
+    })
+    .catch(err => {
+      console.error(`Error fetching "${htmlKey}":`, err);
+      container.innerHTML = `<p style="color:red;">Error cargando las instrucciones.</p>`;
+    });
 }
