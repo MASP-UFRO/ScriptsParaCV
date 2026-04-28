@@ -4,9 +4,9 @@
 //   { type: "drive",  id: "GOOGLE_FILE_ID" }
 
 const htmlRegistry = {
-  "ICF177_Bibliografia":    { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/Bibliografia.html" },
-  "ICF177_Evaluaciones":    { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/Detalle_Evaluaciones.html" },
-  "ICF177_Pautas":          { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/Pautas_de_Pruebas.html" },
+  "ICF177_Bibliografia":    { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/ICF177_Bibliografia.html" },
+  "ICF177_Evaluaciones":    { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/ICF177_Evaluaciones.html" },
+  "ICF177_Pautas":          { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/ICF177_Pautas.html" },
   "ICF177_Proy_Descripcion":{ type: "drive",  id: "1B8nd-95dKr0RNjG7vEdLL4wJOZSh45dO" },
   "ICF177_Proy_Fechas":     { type: "drive",  id: "1urY08CsOjSuN7bb07fgAJEH-_Noa7eNi" },
 };
