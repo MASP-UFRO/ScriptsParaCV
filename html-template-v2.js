@@ -13,9 +13,6 @@ const htmlRegistry = {
 
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxO_3k0Sc6uvuxKBsD-0Bxl1orNDKoxXmrXYo0sdjvgOwhZsuEEsNpjeSb7ZHtdVwwRdw/exec';
 
-const GITHUB_CACHE_TTL_MS = 1  * 60 * 1000;  //  1 minute
-const DRIVE_CACHE_TTL_MS  = 10 * 60 * 1000;  // 10 minutes
-
 // 2. THE RENDER FUNCTION
 function renderDriveHtmlSnippet(htmlKey) {
   const targetId = `html-contained-${htmlKey}`;
@@ -33,18 +30,14 @@ function renderDriveHtmlSnippet(htmlKey) {
     return;
   }
 
-  const cacheKey = `moodle_html_${htmlKey}`;
-  const ttl = entry.type === "github" ? GITHUB_CACHE_TTL_MS : DRIVE_CACHE_TTL_MS;
-
-  // Check cache with TTL (sessionStorage handles tab/window close automatically)
-  const cachedRaw = sessionStorage.getItem(cacheKey);
-  if (cachedRaw) {
-    const { html, timestamp } = JSON.parse(cachedRaw);
-    if (Date.now() - timestamp < ttl) {
-      container.innerHTML = html;
+  // Drive: cache for the session, no expiry
+  if (entry.type === "drive") {
+    const cacheKey = `moodle_html_${htmlKey}`;
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) {
+      container.innerHTML = cached;
       return;
     }
-    sessionStorage.removeItem(cacheKey); // Expired — clean up
   }
 
   container.innerHTML = `<p style="text-align:center;color:#666;font-style:italic;">Cargando contenido...</p>`;
@@ -56,7 +49,9 @@ function renderDriveHtmlSnippet(htmlKey) {
   fetch(fetchUrl)
     .then(r => r.text())
     .then(html => {
-      sessionStorage.setItem(cacheKey, JSON.stringify({ html, timestamp: Date.now() }));
+      if (entry.type === "drive") {
+        sessionStorage.setItem(`moodle_html_${htmlKey}`, html);
+      }
       container.innerHTML = html;
     })
     .catch(err => {
