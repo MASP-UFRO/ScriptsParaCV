@@ -49,9 +49,8 @@ function renderDriveHtmlSnippet(htmlKey) {
 
   container.innerHTML = `<p style="text-align:center;color:#666;font-style:italic;">Cargando contenido...</p>`;
 
-  // Cache-bust GitHub URLs to bypass GitHub Pages CDN cache
   const fetchUrl = entry.type === "github"
-    ? `${entry.url}?t=${Date.now()}`
+    ? entry.url
     : `${APPS_SCRIPT_URL}?id=${entry.id}`;
 
   fetch(fetchUrl)
