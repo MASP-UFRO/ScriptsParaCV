@@ -46,7 +46,10 @@ function renderDriveHtmlSnippet(htmlKey) {
     ? entry.url
     : `${APPS_SCRIPT_URL}?id=${entry.id}`;
 
-  fetch(fetchUrl)
+  // GitHub: bypass browser HTTP cache. Drive: normal fetch.
+  const fetchOptions = entry.type === "github" ? { cache: "no-cache" } : {};
+
+  fetch(fetchUrl, fetchOptions)
     .then(r => r.text())
     .then(html => {
       if (entry.type === "drive") {
