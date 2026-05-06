@@ -13,8 +13,8 @@ const htmlRegistry = {
 
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxO_3k0Sc6uvuxKBsD-0Bxl1orNDKoxXmrXYo0sdjvgOwhZsuEEsNpjeSb7ZHtdVwwRdw/exec';
 
-const GITHUB_CACHE_TTL_MS = 30 * 1000;        // 30 seconds
-const DRIVE_CACHE_TTL_MS  = 10 * 60 * 1000;   // 10 minutes
+const GITHUB_CACHE_TTL_MS = 30 * 1000;       // 30 seconds
+const DRIVE_CACHE_TTL_MS  = 10 * 60 * 1000;  // 10 minutes
 
 // 2. THE RENDER FUNCTION
 function renderDriveHtmlSnippet(htmlKey) {
@@ -36,7 +36,7 @@ function renderDriveHtmlSnippet(htmlKey) {
   const cacheKey = `moodle_html_${htmlKey}`;
   const ttl = entry.type === "github" ? GITHUB_CACHE_TTL_MS : DRIVE_CACHE_TTL_MS;
 
-  // Check cache (same logic for both types now)
+  // Check cache (same logic for both types)
   const cachedRaw = sessionStorage.getItem(cacheKey);
   if (cachedRaw) {
     const { html, timestamp } = JSON.parse(cachedRaw);
@@ -49,8 +49,9 @@ function renderDriveHtmlSnippet(htmlKey) {
 
   container.innerHTML = `<p style="text-align:center;color:#666;font-style:italic;">Cargando contenido...</p>`;
 
+  // Cache-bust GitHub URLs to bypass GitHub Pages CDN cache
   const fetchUrl = entry.type === "github"
-    ? entry.url
+    ? `${entry.url}?t=${Date.now()}`
     : `${APPS_SCRIPT_URL}?id=${entry.id}`;
 
   fetch(fetchUrl)
