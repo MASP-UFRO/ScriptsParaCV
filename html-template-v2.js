@@ -7,8 +7,8 @@ const htmlRegistry = {
   "ICF177_Bibliografia":    { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/ICF177_Bibliografia.html" },
   "ICF177_Evaluaciones":    { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/ICF177_Evaluaciones.html" },
   "ICF177_Pautas":          { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/ICF177_Pautas.html" },
-  "ICF177_Proy_Descripcion":{ type: "drive",  id: "1B8nd-95dKr0RNjG7vEdLL4wJOZSh45dO" },
-  "ICF177_Proy_Fechas":     { type: "drive",  id: "1urY08CsOjSuN7bb07fgAJEH-_Noa7eNi" },
+  "ICF177_Proy_Descripcion":{ type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/ICF177_Proy_Descripcion.html" },
+  "ICF177_Proy_Fechas":     { type: "github", url: "https://masp-ufro.github.io/ICF177/InfoHTMLs/ICF177_Proy_Fechas.html" },
 };
 
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxO_3k0Sc6uvuxKBsD-0Bxl1orNDKoxXmrXYo0sdjvgOwhZsuEEsNpjeSb7ZHtdVwwRdw/exec';
