@@ -4,9 +4,10 @@ function renderSimulation(simUrl, containerId, simHeight = '1000px') {
 
 	container.innerHTML = `
 		<p></p>
-		<h3 style="text-align: center;"><strong>Animación interactiva</strong></h3>
-		<p style="text-align: center;">(Simulaciones construidas por el Prof. Nikolaos Dimakis): </p>
-		
+		/** 
+		<h3 style="text-align: center;"><strong>Título de ejemplo</strong></h3>
+		<p style="text-align: center;">Subtítulo de ejemplo: </p>
+		*/
 		<div style="width: 100%; text-align: center;">
 				<iframe 
 						src="${simUrl}" 
@@ -18,4 +19,4 @@ function renderSimulation(simUrl, containerId, simHeight = '1000px') {
 		<p><br /><br /></p>
 	`;
 }
-/** Comment */
+
