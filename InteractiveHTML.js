@@ -4,10 +4,10 @@ function renderSimulation(simUrl, containerId, simHeight = '1000px') {
 
 	container.innerHTML = `
 		<p></p>
-		/** 
+		<!-- /** 
 		<h3 style="text-align: center;"><strong>Título de ejemplo</strong></h3>
 		<p style="text-align: center;">Subtítulo de ejemplo: </p>
-		*/
+		*/ -->
 		<div style="width: 100%; text-align: center;">
 				<iframe 
 						src="${simUrl}" 
