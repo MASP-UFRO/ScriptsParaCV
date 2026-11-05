@@ -14,46 +14,46 @@
  * y el iframe se ajusta solo. Las antiguas no avisan: conservan simHeight, como antes.
  */
 (function () {
-	var frames = [];
-	var listening = false;
+    var frames = [];
+    var listening = false;
 
-	function onMessage(event) {
-		var data = event.data;
-		if (!data || data.type !== 'sim-resize') return;
-		var h = Number(data.height);
-		if (!isFinite(h) || h <= 0) return;
-		for (var i = 0; i < frames.length; i++) {
-			var f = frames[i];
-			if (!f.isConnected) continue;
-			if (f.contentWindow === event.source) {
-				var hb = h + 2; // + borde del iframe (1px arriba y abajo)
-				f.style.setProperty('height', hb + 'px', 'important');
-				f.style.setProperty('min-height', hb + 'px', 'important');
-			}
-		}
-	}
+    function onMessage(event) {
+        var data = event.data;
+        if (!data || data.type !== 'sim-resize') return;
+        var h = Number(data.height);
+        if (!isFinite(h) || h <= 0) return;
+        for (var i = 0; i < frames.length; i++) {
+            var f = frames[i];
+            if (!f.isConnected) continue;
+            if (f.contentWindow === event.source) {
+                var hb = h + 2; // + borde del iframe (1px arriba y abajo)
+                f.style.setProperty('height', hb + 'px', 'important');
+                f.style.setProperty('min-height', hb + 'px', 'important');
+            }
+        }
+    }
 
 
-	// Si algún ancestro del contenedor tiene un relleno derecho grande (p. ej. 200px),
-	// se compensa con un margen negativo en el hijo de ese ancestro que contiene al contenedor.
-	function expandPastRightPadding(container) {
-		var child = container, node = container.parentElement;
-		while (node && node !== document.body) {
-			var pr = parseFloat(window.getComputedStyle(node).paddingRight) || 0;
-			if (pr >= 40) {
-				child.style.marginRight = (-pr) + 'px';
-				return;
-			}
-			child = node;
-			node = node.parentElement;
-		}
-	}
+    // Si algún ancestro del contenedor tiene un relleno derecho grande (p. ej. 200px),
+    // se compensa con un margen negativo en el hijo de ese ancestro que contiene al contenedor.
+    function expandPastRightPadding(container) {
+        var child = container, node = container.parentElement;
+        while (node && node !== document.body) {
+            var pr = parseFloat(window.getComputedStyle(node).paddingRight) || 0;
+            if (pr >= 40) {
+                child.style.marginRight = (-pr) + 'px';
+                return;
+            }
+            child = node;
+            node = node.parentElement;
+        }
+    }
 
-	window.renderSimulation = function (simUrl, containerId, simHeight = '1000px', maxWidth = '1000px', expandRight = false) {
-		const container = document.getElementById(containerId);
-		if (!container) return;
+    window.renderSimulation = function (simUrl, containerId, simHeight = '1000px', maxWidth = '1000px', expandRight = false) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
 
-		container.innerHTML = `
+        container.innerHTML = `
 		<p></p>
 		<!-- /** 
 		<h3 style="text-align: center;"><strong>Título de ejemplo</strong></h3>
@@ -70,14 +70,14 @@
 		<p><br /><br /></p>
 	`;
 
-		if (expandRight) expandPastRightPadding(container);
+        if (expandRight) expandPastRightPadding(container);
 
-		var iframe = container.querySelector('iframe');
-		frames = frames.filter(function (f) { return f.isConnected; });
-		if (iframe) frames.push(iframe);
-		if (!listening) {
-			window.addEventListener('message', onMessage);
-			listening = true;
-		}
-	};
+        var iframe = container.querySelector('iframe');
+        frames = frames.filter(function (f) { return f.isConnected; });
+        if (iframe) frames.push(iframe);
+        if (!listening) {
+            window.addEventListener('message', onMessage);
+            listening = true;
+        }
+    };
 })();
